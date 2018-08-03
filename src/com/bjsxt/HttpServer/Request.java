@@ -49,7 +49,6 @@ public class Request {
 		
 		if (sMethod.equalsIgnoreCase("GET")){
 			if (!firstLine.contains("?")){
-				sPage = firstLine.substring(firstLine.indexOf("/")+1, firstLine.indexOf("?"));
 				return; // no parameters
 			} else {
 				sPage = sUrl.substring(sUrl.indexOf("/")+1, sUrl.indexOf("?"));
