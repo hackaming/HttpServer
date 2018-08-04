@@ -19,7 +19,7 @@ public class HttpServer {
                 new Thread(new Dispatcher(client)).start(); //dispatcher the request.
             }
         } catch (IOException e) {
-            e.printStackTrace();
+         shutdown();
         }
         CloseUtil.closeIO(ss);
     }
@@ -36,6 +36,11 @@ public class HttpServer {
     }
 	public void shutdown(){
 		this.isRunning = false;
-	}
+        try {
+            ss.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 	
 }
