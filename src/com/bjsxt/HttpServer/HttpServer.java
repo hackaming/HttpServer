@@ -16,7 +16,10 @@ public class HttpServer {
 		try {
 			ss= new ServerSocket(Port);
 			Socket client = ss.accept();
-			Request r = new Request(client.getInputStream());
+			Request req = new Request(client.getInputStream());
+			Response res = new Response(client.getOutputStream());
+			res.print("Hello World!你好，世界！");
+			res.pushToClient(200);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
