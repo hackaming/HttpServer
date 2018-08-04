@@ -14,9 +14,9 @@ public class Servlet {
     }
 
     public void service(Request req,Response resp){
+
         resp.print("Hello World!你好，世界！");
         resp.print("dddddd");
-        resp.pushToClient(200);
     }
     public void doGet(){
 
