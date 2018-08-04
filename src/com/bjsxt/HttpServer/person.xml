@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<persons>
+    <person>
+        <name>xianming</name>
+        <age>900</age>
+    </person>
+    <person>
+        <name>julia</name>
+        <age>200</age>
+    </person>
+
+</persons>

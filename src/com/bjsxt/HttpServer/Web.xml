@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<servlet>
+    <name>login</name>
+    <servlet-name>com.bjsxt.HttpServer.LoginServlet</servlet-name>
+</servlet>
+<mapping>
+    <name>login</name>
+    <url-pattern>/log</url-pattern>
+</mapping>
+<servlet>
+    <name>register</name>
+    <servlet-name>com.bjsxt.HttpServer.RegisterServlet</servlet-name>
+</servlet>
+<mapping>
+    <name>register</name>
+    <url-pattern>/register</url-pattern>
+</mapping>
