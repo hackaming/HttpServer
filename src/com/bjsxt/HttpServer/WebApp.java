@@ -1,18 +1,26 @@
 package com.bjsxt.HttpServer;
 
+import javax.xml.parsers.SAXParser;
+import javax.xml.parsers.SAXParserFactory;
 import java.util.*;
 
 public class WebApp {
     private static ServletContext servletContext;
 
     static { //read all the message from the web.xml, here just simulate it by adding it manually
-        servletContext = new ServletContext();
-        Map<String, String> mapping = servletContext.getMapping();
-        Map<String, String> servlets = servletContext.getServlets();
-        servlets.put("login", "com.bjsxt.HttpServer.LoginServlet");
-        servlets.put("register", "com.bjsxt.HttpServer.RegisterServlet");
-        mapping.put("/login", "login");
-        mapping.put("/register", "register");
+        try {
+            SAXParserFactory factor = SAXParserFactory.newInstance();
+            SAXParser parser = factor.newSAXParser();
+            WebAppHandler handler = new WebAppHandler();
+            parser.parse(Thread.currentThread().getContextClassLoader().getResourceAsStream("com/bjsxt/HttpServer/web.xml"), handler);
+            List<Mapping>  mapping = handler.getMappings(); // will get the configuration from web.xml needs to continue tomorrow.
+            List<Entity> servlets = handler.getEntities();
+/**
+ * add the code to transfer the mapping and servlets into map here?
+ */
+        }catch (Exception e){
+
+        }
     }
 
     public static Servlet getServlet(String url) {
