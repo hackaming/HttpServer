@@ -56,6 +56,7 @@ public class Response {
         } catch (IOException e) {
             e.printStackTrace();
         }
+        CloseUtil.closeIO(bw);
     }
 /*	public static void main(String[] argv){
 		Response r = new Response();
