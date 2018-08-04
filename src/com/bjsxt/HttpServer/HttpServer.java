@@ -4,13 +4,13 @@ import java.io.*;
 import java.net.*;
 
 public class HttpServer {
-	public static final int Port = 8888;
+	//public static final int Port = 8888;
 	public static final String CRLN = "\r\n";
 	public static final String BLANK = " ";
 	private ServerSocket ss = null;
 	private Boolean  isRunning = true;
 	public static void main(String [] argv){
-		new HttpServer().start1();
+		new HttpServer().start();
 	}
 	public void start1(){
 		try {
@@ -29,32 +29,26 @@ public class HttpServer {
 	}
 	public void receive(){
         try {
-            Socket client = ss.accept();
-            Servlet servlet = new Servlet();
-            servlet.service(new Request(client.getInputStream()),new Response(client.getOutputStream()));
+            while (isRunning){
+                Socket client = ss.accept();
+                new Thread(new Dispatcher(client)).start(); //dispatcher the request.
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
         CloseUtil.closeIO(ss);
     }
 	public void start(){
-		try {
-			ss= new ServerSocket(Port);
-			receive();
-		} catch (IOException e1) {
-			e1.printStackTrace();
-		}
-		try {
-			while (isRunning){
-				Socket client = ss.accept();
-				Request r = new Request(client.getInputStream());
-				// get request
-				// send response
-			}
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+        start(8888);
 	}
+	public void start(int port){
+        try {
+            ss= new ServerSocket(port);
+            receive();
+        } catch (IOException e1) {
+            e1.printStackTrace();
+        }
+    }
 	public void shutdown(){
 		this.isRunning = false;
 	}
