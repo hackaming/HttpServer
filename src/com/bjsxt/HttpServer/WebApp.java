@@ -16,7 +16,7 @@ public class WebApp {
             List<Mapping>  mapping = handler.getMappings(); // will get the configuration from web.xml needs to continue tomorrow.
             List<Entity> servlets = handler.getEntities();
 /**
- * add the code to transfer the mapping and servlets into map here?
+ * add the code to transfer the mapping and servlets into map  here??
  */
         }catch (Exception e){
 
