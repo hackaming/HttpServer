@@ -20,7 +20,7 @@ public class Dispatcher implements Runnable{
         }
     }
     public void run(){
-        Servlet servlet = new Servlet();
+        Servlet servlet = WebApp.getServlet(req.getsUrl());// will needs to add try catch!
         servlet.service(req,resp);
         resp.pushToClient(code);
         CloseUtil.closeIO(s);

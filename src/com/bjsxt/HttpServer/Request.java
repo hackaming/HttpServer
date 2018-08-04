@@ -7,9 +7,12 @@ public class Request {
 	private Socket s;
 	private String sRequestInfo;
 	private String sMethod;
+
 	private String sUrl;
 	private String sPage;
+
 	private Map parameters;
+
 	public Request(){
 		s = null;
 		is = null;
@@ -79,11 +82,19 @@ public class Request {
 			List<String> values = (List<String>) parameters.get(key);
 			values.add(value);
 		}
-/*		for (Object s:parameters.keySet()){
-			List<String> slist = (List<String>) parameters.get(s);
-			for (String str:slist){
-				System.out.println(s.toString()+":"+str);
-			}
-		}*/
+	}
+
+	public Map getParameters() {
+		return parameters;
+	}
+
+	public void setParameters(Map parameters) {
+		this.parameters = parameters;
+	}
+	public String getsPage() {
+		return sPage;
+	}
+	public String getsUrl() {
+		return sUrl;
 	}
 }

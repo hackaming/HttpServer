@@ -1,27 +1,10 @@
 package com.bjsxt.HttpServer;
 
-public class Servlet {
-    private Response resp;
-    private Request req;
-    public Servlet(){
-        resp = null;
-        req = null;
-    }
-    public Servlet(Request req,Response resp){
-        this();
-        this.req = req;
-        this.resp = resp;
-    }
-
+public abstract class Servlet {
     public void service(Request req,Response resp){
-
-        resp.print("Hello World!你好，世界！");
-        resp.print("dddddd");
+        this.doGet( req, resp);
+        this.doPost( req, resp);
     }
-    public void doGet(){
-
-    }
-    public void doPost(){
-
-    }
+    public abstract void doGet(Request req,Response resp);
+    public abstract void doPost(Request req,Response resp);
 }
