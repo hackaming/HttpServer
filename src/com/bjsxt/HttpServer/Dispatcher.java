@@ -18,7 +18,7 @@ public class Dispatcher implements Runnable{
             resp.pushToClient(500);
             return;
         }
-    }
+    } f
     public void run(){
         Servlet servlet = WebApp.getServlet(req.getsUrl());// will needs to add try catch!
         servlet.service(req,resp);
