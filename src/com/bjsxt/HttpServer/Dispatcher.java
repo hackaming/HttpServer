@@ -18,10 +18,19 @@ public class Dispatcher implements Runnable{
             resp.pushToClient(500);
             return;
         }
-    } 
+    }
     public void run(){
-        Servlet servlet = WebApp.getServlet(req.getsUrl());// will needs to add try catch!
-        servlet.service(req,resp);
+        String url = req.getsPage();
+        if ( url == null || url.trim() == ""){
+            code = 500;
+        } else {
+            Servlet servlet = WebApp.getServlet(url.trim());// will needs to add try catch!
+            if (null == servlet){
+                code = 404;
+            } else {
+                servlet.service(req,resp);
+            }
+        }
         resp.pushToClient(code);
         CloseUtil.closeIO(s);
     }

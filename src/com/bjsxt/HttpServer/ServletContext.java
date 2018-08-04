@@ -4,7 +4,7 @@ public class ServletContext { //a container includes all the servlet information
     Map<String,Servlet> servlets; //url to servlet
     Map<String,String> mapping; //string to url?
     public ServletContext(){
-        context = new HashMap<String,Servlet>();
+        servlets = new HashMap<String,Servlet>();
         mapping = new HashMap<String,String>();
     }
 
