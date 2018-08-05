@@ -13,8 +13,19 @@ public class WebApp {
             SAXParser parser = factor.newSAXParser();
             WebAppHandler handler = new WebAppHandler();
             parser.parse(Thread.currentThread().getContextClassLoader().getResourceAsStream("com/bjsxt/HttpServer/web.xml"), handler);
-            List<Mapping>  mapping = handler.getMappings(); // will get the configuration from web.xml needs to continue tomorrow.
-            List<Entity> servlets = handler.getEntities();
+            // List<Mapping>  mapping = handler.getMappings(); // will get the configuration from web.xml needs to continue tomorrow.
+            // List<Entity> servlets = handler.getEntities();
+            servletContext = new ServletContext();
+            for (Entity entity:handler.getEntities()){
+                servletContext.getServlets().put(entity.getName(),entity.getClz());
+            }
+            for (Mapping mapping:handler.getMappings()){
+                String name = mapping.getName();
+                List<String> urlList = mapping.getUrlPatterns();
+                for (int i=0;i<urlList.size();i++){
+                    servletContext.getMapping().put(urlList.get(i),name);
+                }
+            }
 /**
  * add the code to transfer the mapping and servlets into map  here??
  */
